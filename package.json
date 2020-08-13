@@ -33,12 +33,14 @@
     "demo": "npx http-server ./",
     "develop": "concurrently \"npm run build:esm -- --watch\" \"npm run build:umd -- --watch\" \"npm test -- --singleRun false --autoWatch true\" \"npm lint -- --watch\"",
     "lint": "esw --color --ext .ts src",
-    "test": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js",
+    "cypress:open": "cypress open"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.3.2",
     "@typescript-eslint/parser": "^2.3.2",
     "concurrently": "^4.1.2",
+    "cypress": "^4.12.1",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.1",
@@ -53,12 +55,10 @@
     "rollup": "^1.23.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "terser": "^4.3.4",
-    "typescript": "^3.6.3"
+    "typescript": "^3.9.7"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "hooks": {}
   },
   "lint-staged": {
     "*.{js,ts}": [

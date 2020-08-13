@@ -3,7 +3,7 @@
     "module": "esnext",
     "target": "es6",
     "rootDir": "src",
-    "outDir": "dist/esm",
+    "outDir": "build/esm",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,

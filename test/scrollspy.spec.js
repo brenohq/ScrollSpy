@@ -4,12 +4,17 @@
  * License: MIT
  */
 
+import $ from 'jquery';
+import * as ScrollSpy from '../src/scrollspy.ts';
+import fixture from './util/fixture.js';
+
+
 describe("ScrollSpy", function() {
   var interval = null;
   beforeEach(function() {
-    $(window.FIXTURES.scrollspy).prependTo("body");
+    $(fixture).prependTo("body");
     window.scrollTo(0, 0);
-    window.innerHeight = 350;
+    window.innerHeight = 500;
   });
 
   afterEach(function() {
@@ -133,6 +138,7 @@ describe("ScrollSpy", function() {
       });
       window.scrollTo(0, 2200);
       $(window).trigger("scroll");
+
       setTimeout(function() {
         expect(foo.top1150Callback).toHaveBeenCalled();
         expect(foo.top1150BottomCallback).toHaveBeenCalled();

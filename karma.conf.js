@@ -2,15 +2,42 @@
 
 module.exports = function(config) {
   config.set({
-    basePath: "",
-    frameworks: ["jasmine"],
-    files: ["dist/scrollspy.js", "test/util/*.js", "test/**/*Spec.js"],
-    reporters: ["progress"],
-    port: 9876,
-    colors: true,
-    logLevel: config.LOG_INFO,
     autoWatch: false,
+    basePath: "",
+    browsers: ["ChromeHeadless"],
+    colors: true,
+    frameworks: ["jasmine"],
+    logLevel: config.LOG_INFO,
+    port: 9876,
+    reporters: ["progress"],
     singleRun: true,
-    browsers: ["Chrome"]
+    files: ["test/**/*.js"],
+    preprocessors: {
+      'test/**/*.js': ['webpack', 'sourcemap'],
+    },
+    webpack: {
+      devtool: 'inline-source-map',
+      module: {
+        rules: [
+          {
+            test: /\.js$/i,
+            exclude: /(node_modules)/,
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          },
+          {
+            test: /\.tsx?$/,
+            loader: "ts-loader"
+          }
+        ]
+      }
+    },
+
+    webpackMiddleware: {
+      noInfo: true,
+      stats: 'errors-only',
+    },
   });
 };

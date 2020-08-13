@@ -12,7 +12,7 @@ export interface ScrollSpyItem extends ScrollSpyItemOptions {
     pos: number;
 }
 export declare function clean(): void;
-export declare function getItems(): readonly (Readonly<ScrollSpyItem>)[];
+export declare function getItems(): readonly Readonly<ScrollSpyItem>[];
 export declare function add(param: ScrollSpyItemOptions): void;
 export declare function debug(): ScrollSpyItem[];
 //# sourceMappingURL=scrollspy.d.ts.map

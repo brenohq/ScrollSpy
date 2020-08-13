@@ -29,7 +29,7 @@ export function clean(): void {
   items = [];
 }
 
-export function getItems(): readonly (Readonly<ScrollSpyItem>)[] {
+export function getItems(): readonly Readonly<ScrollSpyItem>[] {
   return items.map(i => i);
 }
 

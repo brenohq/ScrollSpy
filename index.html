@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>ScollSpy Demo</title>
+    <title>ScrollSpy Demo</title>
     <script type="text/javascript" src="dist/scrollspy.js"></script>
     <style type="text/css">
       html,
@@ -10,6 +10,9 @@
       }
 
       .block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 300px;
         max-width: 300px;
         margin: 10px auto;
@@ -17,16 +20,26 @@
       }
     </style>
   </head>
+
   <body>
     <div class="block item-1"></div>
     <div class="block item-2"></div>
-    <div class="block item-3"></div>
+    <div class="block item-3">should colorize</div>
     <div class="block item-4"></div>
-    <div class="block item-5"></div>
-    <div class="block item-6"></div>
+    <div class="block item-5">should colorize</div>
+    <div class="block item-6">should colorize</div>
     <div class="block item-7"></div>
+    <div class="block item-8"></div>
+    <div class="block item-9">should colorize</div>
+    <div class="block item-10"></div>
+    <div class="block item-11">should colorize</div>
+    <div class="block item-12"></div>
+    <div class="block item-13"></div>
+    <div class="block item-14">should colorize</div>
 
     <script type="text/javascript">
+      performance.mark("scrollspy");
+
       function switchBlockColor() {
         const colors = ["red", "green", "blue"];
         color = colors[Math.floor(Math.random() * colors.length)];
@@ -36,22 +49,44 @@
       ScrollSpy.add({
         el: document.querySelector(".item-3"),
         offset: 0,
-        callback: switchBlockColor
+        callback: switchBlockColor,
       });
 
       ScrollSpy.add({
         el: document.querySelector(".item-5"),
         offset: 40,
-        callback: switchBlockColor
+        callback: switchBlockColor,
       });
 
       ScrollSpy.add({
         el: document.querySelector(".item-6"),
         offset: 40,
-        callback: switchBlockColor
+        callback: switchBlockColor,
+      });
+
+      ScrollSpy.add({
+        el: document.querySelector(".item-9"),
+        offset: 0,
+        callback: switchBlockColor,
+      });
+
+      ScrollSpy.add({
+        el: document.querySelector(".item-11"),
+        offset: 40,
+        callback: switchBlockColor,
+      });
+
+      ScrollSpy.add({
+        el: document.querySelector(".item-14"),
+        offset: 40,
+        callback: switchBlockColor,
       });
 
       ScrollSpy.debug();
+
+      performance.mark("scrollspy");
+
+      console.log(performance.measure("scrollspy"));
     </script>
   </body>
 </html>

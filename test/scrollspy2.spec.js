@@ -9,12 +9,12 @@ import * as ScrollSpy from '../src/scrollspy2.ts';
 import fixture from './util/fixture.js';
 
 
-describe("ScrollSpy", function() {
+describe("ScrollSpy2", function() {
   var interval = null;
   beforeEach(function() {
     $(fixture).prependTo("body");
     window.scrollTo(0, 0);
-    window.innerHeight = 500;
+    window.innerHeight = 5000;
   });
 
   afterEach(function() {
@@ -138,18 +138,14 @@ describe("ScrollSpy", function() {
     it("should call the callback if reference is bottom and its visible", function(done) {
       ScrollSpy.add({
         el: el,
-        callback: foo.top1150Callback
-      });
-      ScrollSpy.add({
-        el: el,
         reference: "bottom",
         callback: foo.top1150BottomCallback
       });
-      window.scrollTo(0, 2200);
+
+      window.scrollTo(0, 2000);
       $(window).trigger("scroll");
 
       setTimeout(function() {
-        expect(foo.top1150Callback).toHaveBeenCalled();
         expect(foo.top1150BottomCallback).toHaveBeenCalled();
         done();
       }, 100);

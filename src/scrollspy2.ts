@@ -5,7 +5,7 @@
  */
 export interface ScrollSpyItemOptions {
   el: HTMLElement;
-  callback: () => void;
+  callback: (el: HTMLElement) => void;
   offset?: number;
   reference?: ScrollSpyItemReference;
 }
@@ -76,8 +76,6 @@ function observeItem(item: ScrollSpyItem): void {
     rootMargin = `0px 0px ${offset}px 0px`;
   }
 
-  console.log('rootMargin', rootMargin);
-
   const options: IntersectionObserverOptions = {
     rootMargin: rootMargin,
     threshold: 0.01
@@ -97,7 +95,7 @@ function callOnceCallbackFactory(item: ScrollSpyItem): (entries: any[], observer
         called = true;
         observer.disconnect();
 
-        item.callback();
+        item.callback(item.el);
       }
     });
   }

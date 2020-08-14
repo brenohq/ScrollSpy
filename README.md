@@ -14,7 +14,9 @@ The `viewport` is expanded vertically by X pixels, being X the offset value.
 
 ## Bottom
 
-The size of the viewport's bottom is reduced by the offset:
+The size of the viewport's bottom is reduced by the offset. 
+
+To achieve this using the Intersection Observer API we calculate `element size - offset` and apply the result as a negative margin value.
 
 ![bottom_offset](./assets/img/bottom_offset.png)
 

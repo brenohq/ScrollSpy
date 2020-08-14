@@ -33,8 +33,7 @@
     "demo": "npx http-server ./",
     "develop": "concurrently \"npm run build:esm -- --watch\" \"npm run build:umd -- --watch\" \"npm test -- --singleRun false --autoWatch true\" \"npm lint -- --watch\"",
     "lint": "esw --color --ext .ts src",
-    "test": "karma start karma.conf.js",
-    "cypress:open": "cypress open"
+    "test": "karma start karma.conf.js"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
@@ -43,7 +42,6 @@
     "@typescript-eslint/parser": "^2.3.2",
     "babel-loader": "^8.1.0",
     "concurrently": "^4.1.2",
-    "cypress": "^4.12.1",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.1",

@@ -38,8 +38,6 @@
     <div class="block item-14">should colorize</div>
 
     <script type="text/javascript">
-      performance.mark("scrollspy");
-
       function switchBlockColor() {
         const colors = ["red", "green", "blue"];
         color = colors[Math.floor(Math.random() * colors.length)];
@@ -83,10 +81,6 @@
       });
 
       ScrollSpy.debug();
-
-      performance.mark("scrollspy");
-
-      console.log(performance.measure("scrollspy"));
     </script>
   </body>
 </html>

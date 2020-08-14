@@ -11,6 +11,5 @@
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
-  "include": ["src"],
-  "exclude": ["cypress"]
+  "include": ["src"]
 }

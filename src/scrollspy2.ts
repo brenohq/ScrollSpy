@@ -64,11 +64,13 @@ export function debug() {
     nodeHtml.setAttribute("style", css);
     document.body.appendChild(nodeHtml);
   });
+
   return items;
 }
 
 function observeItem(item: ScrollSpyItem): void {
   let rootMargin = "";
+
   if (item.reference === "top") {
     rootMargin = `${item.offset}px 0px ${item.offset}px 0px`;
   } else {
@@ -80,6 +82,7 @@ function observeItem(item: ScrollSpyItem): void {
     rootMargin: rootMargin,
     threshold: 0.01
   };
+
   const callback = callOnceCallbackFactory(item);
 
   item.observer = new IntersectionObserver(callback, options);

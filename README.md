@@ -3,6 +3,22 @@
 Scrollspy can be used to bind a callback function to be called when the element
 reaches its scroll position.
 
+It wraps the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) using the `viewport` as `observer` and the parameter element as `observed`.
+The offset values are calculated from top (default) or bottom:
+
+## Top
+
+The `viewport` is expanded vertically by X pixels, being X the offset value.
+
+![top_offset](./assets/img/top_offset.png)
+
+## Bottom
+
+The size of the viewport's bottom is reduced by the offset:
+
+![bottom_offset](./assets/img/bottom_offset.png)
+
+
 ## Setup
 
 Install via npm

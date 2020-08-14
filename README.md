@@ -7,9 +7,9 @@ It wraps the [Intersection Observer API](https://developer.mozilla.org/en-US/doc
 The offset values are calculated from top (default) or bottom:
 
 
-Top                                                                               |                                                              Bottom
+**Top**                                                                           |                                                          **Bottom**
 :--------------------------------------------------------------------------------:|:------------------------------------------------------------------:
-Top: The `viewport` is expanded vertically by X pixels, being X the offset value. | Bottom: The size of the viewport's bottom is reduced by the offset:
+The `viewport` is expanded vertically by X pixels, being X the offset value.      | The size of the viewport's bottom is reduced by the offset. <br/> To achieve this we calculate `element size - offset` and apply the result as negative margin value.
 ![top_offset](./assets/img/top_offset.png)                                        |                    ![bottom_offset](./assets/img/bottom_offset.png)
 
 ## Setup

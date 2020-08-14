@@ -1,6 +1,6 @@
-# Scrollspy
+# ScrollSpy 📜🕵️
 
-Scrollspy can be used to bind a callback function to be called when the element
+ScrollSpy can be used to bind a callback function to be called when the element
 reaches its scroll position.
 
 It wraps the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) using the `viewport` as `observer` and the parameter element as `observed`.
@@ -81,4 +81,4 @@ This project utilizes [npm run scripts](https://docs.npmjs.com/misc/scripts). Se
 
 ## License
 
-Scrollspy is licensed under the [MIT license](LICENSE).
+ScrollSpy is licensed under the [MIT license](LICENSE).

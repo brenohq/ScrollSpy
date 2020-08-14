@@ -3,7 +3,6 @@
  *
  * License: MIT
  */
-
 export interface ScrollSpyItemOptions {
   el: HTMLElement;
   callback: () => void;
@@ -16,16 +15,18 @@ export type ScrollSpyItemReference = "top" | "bottom";
 export interface ScrollSpyItem extends ScrollSpyItemOptions {
   offset: number;
   reference: ScrollSpyItemReference;
+  observer?: IntersectionObserver;
 }
 
-export interface IntersectionObserver {
-    rootMargin: string,
-    threshold: number
+export interface IntersectionObserverOptions {
+  rootMargin: string,
+  threshold: number
 }
 
 let items: ScrollSpyItem[] = [];
 
 export function clean(): void {
+  items.forEach(item => item.observer?.disconnect?.());
   items = [];
 }
 
@@ -33,15 +34,15 @@ export function getItems(): readonly Readonly<ScrollSpyItem>[]{
   return items.map(i => i);
 }
 
-export function add(param: ScrollSpyItemOptions): void {
-  if (!param.el) {
+export function add(options: ScrollSpyItemOptions): void {
+  if (!options.el) {
     throw new Error("[@globocom/scrollspy] item.el is required");
   }
 
-  const item: ScrollSpyItem = { offset: 200, reference: "top", ...param };
+  const item: ScrollSpyItem = { offset: 200, reference: "top", ...options };
   items.push(item);
 
-  observeItem(item, param.callback);
+  observeItem(item);
 }
 
 export function debug() {
@@ -66,7 +67,7 @@ export function debug() {
   return items;
 }
 
-function observeItem(item: ScrollSpyItem, callback: () => void): void {
+function observeItem(item: ScrollSpyItem): void {
   let rootMargin = "";
   if (item.reference === "top") {
     rootMargin = `${item.offset}px 0px ${item.offset}px 0px`;
@@ -75,13 +76,31 @@ function observeItem(item: ScrollSpyItem, callback: () => void): void {
     rootMargin = `0px 0px ${offset}px 0px`;
   }
 
-  let options = {
+  console.log('rootMargin', rootMargin);
+
+  const options: IntersectionObserverOptions = {
     rootMargin: rootMargin,
     threshold: 0.01
   };
+  const callback = callOnceCallbackFactory(item);
 
-  let observer = new IntersectionObserver(callback, options);
-  observer.observe(item.el);
+  item.observer = new IntersectionObserver(callback, options);
+  item.observer.observe(item.el);
+}
+
+function callOnceCallbackFactory(item: ScrollSpyItem): (entries: any[], observer: IntersectionObserver) => void {
+  let called: boolean = false;
+
+  return (entries: any[], observer: IntersectionObserver) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !called) {
+        called = true;
+        observer.disconnect();
+
+        item.callback();
+      }
+    });
+  }
 }
 
 function getElementPos(item: ScrollSpyItem): number {
